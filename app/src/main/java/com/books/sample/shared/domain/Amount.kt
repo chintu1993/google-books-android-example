@@ -1,6 +1,6 @@
 package com.books.sample.shared.domain
 
-import java.math.BigInteger
+import java.math.BigDecimal
 
 
-data class Amount(val value: BigInteger, val currency: String)
+data class Amount(val value: BigDecimal, val currency: String)
