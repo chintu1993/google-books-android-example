@@ -11,10 +11,15 @@ import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
 import java.util.concurrent.TimeUnit;
 
+import javax.inject.Inject;
+import javax.inject.Singleton;
+
+@Singleton
 public class RestClient {
 
     private final OkHttpClient client;
 
+    @Inject
     public RestClient() {
         try {
             client = createClient();

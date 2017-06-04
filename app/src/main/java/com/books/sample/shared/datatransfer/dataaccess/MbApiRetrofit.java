@@ -4,10 +4,14 @@ import retrofit2.Retrofit;
 import retrofit2.Retrofit.Builder;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import javax.inject.Inject;
+import javax.inject.Singleton;
 
+@Singleton
 public class MbApiRetrofit {
     private final Retrofit retrofit;
 
+    @Inject
     public MbApiRetrofit(RestClient mchRestClient) {
         retrofit = createRetrofit(mchRestClient);
     }
