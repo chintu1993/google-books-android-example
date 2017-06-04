@@ -20,7 +20,7 @@ import java.util.concurrent.Callable;
 import javax.annotation.Nonnull;
 import javax.inject.Inject;
 
-abstract class BaseRestProcessorImpl<Service, ResponseDto, ResponseDomainObject, RequestDomainObject, ResponseListener extends ProcessorListener> implements
+public abstract class BaseRestProcessorImpl<Service, ResponseDto, ResponseDomainObject, RequestDomainObject, ResponseListener extends ProcessorListener> implements
         RestProcessor<RequestDomainObject, ResponseListener>,
         Callback<ResponseDto> {
 
@@ -31,8 +31,8 @@ abstract class BaseRestProcessorImpl<Service, ResponseDto, ResponseDomainObject,
 
     private Optional<ResponseListener> listener = Optional.absent();
 
-
     protected BaseRestProcessorImpl() {
+        inject();
         service = mbApiRetrofit.createResource(getService());
     }
 
@@ -102,4 +102,6 @@ abstract class BaseRestProcessorImpl<Service, ResponseDto, ResponseDomainObject,
     protected abstract void notifyOnDomainDataSuccess(@Nonnull ResponseListener listener, @Nonnull ResponseDomainObject domainData);
 
     protected abstract Class<Service> getService();
+
+    protected abstract void inject();
 }
