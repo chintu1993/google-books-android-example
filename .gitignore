@@ -17,7 +17,6 @@
 **/.idea/.name
 **/.idea/vcs.xml
 /ViewLib/build
-gradle.properties
 .gradle
 /local.properties
 .DS_Store
