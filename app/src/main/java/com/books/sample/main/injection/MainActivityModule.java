@@ -10,10 +10,6 @@ import dagger.android.ActivityKey;
 import dagger.android.AndroidInjector;
 import dagger.multibindings.IntoMap;
 
-/**
- * @author Ivan Martos <ivan.martos@cleverlance.com>
- */
-
 @Module(subcomponents = {IMainActivitySubcomponent.class})
 public abstract class MainActivityModule {
     @Binds

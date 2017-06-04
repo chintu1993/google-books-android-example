@@ -10,10 +10,6 @@ import dagger.android.HasDispatchingActivityInjector;
 
 import javax.inject.Inject;
 
-/**
- * @author Ivan Martos <ivan.martos@cleverlance.com>
- */
-
 public class BooksApplication extends Application implements HasDispatchingActivityInjector {
     @Inject DispatchingAndroidInjector<Activity> dispatchingAndroidInjector;
 
