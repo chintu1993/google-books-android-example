@@ -16,7 +16,7 @@ data class Book(
         val rating: Optional<Rating>,
         val authors: List<Author>,
         val publishInfo: PublishInfo,
-        val buyUri: Uri,
+        val buyUri: Optional<Uri>,
         val thumbnail: Uri,
-        val price: Amount
+        val price: Optional<Amount>
 )

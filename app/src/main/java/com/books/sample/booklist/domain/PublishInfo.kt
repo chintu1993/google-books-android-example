@@ -1,8 +1,8 @@
 package com.books.sample.booklist.domain
 
-import org.joda.time.LocalDate
-
 data class PublishInfo(
-        val publishedDate: LocalDate,
-        val publisher: String = ""
-)
+        val publishedDate: String,
+        val publisher: String
+) {
+    constructor(publishedDate: String) : this(publishedDate, "")
+}
