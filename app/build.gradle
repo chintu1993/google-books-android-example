@@ -20,6 +20,10 @@ android {
         }
     }
 
+    configurations.all {
+        resolutionStrategy.force 'com.google.code.findbugs:jsr305:2.0.1'
+    }
+
     packagingOptions {
         exclude 'META-INF/NOTICE.txt'
         exclude 'META-INF/maven/com.google.guava/guava/pom.xml'
@@ -55,7 +59,10 @@ dependencies {
     compile "com.google.guava:guava:$rootProject.ext.guavaVersion"
 
     // Dagger
+    compile "com.google.dagger:dagger:$rootProject.ext.daggerVersion"
     compile "com.google.dagger:dagger-android:$rootProject.ext.daggerVersion"
+    annotationProcessor "com.google.dagger:dagger-android-processor:$rootProject.ext.daggerVersion"
+    annotationProcessor "com.google.dagger:dagger-compiler:$rootProject.ext.daggerVersion"
     kapt "com.google.dagger:dagger-compiler:$rootProject.ext.daggerVersion"
 
     // Retrofit
