@@ -52,6 +52,8 @@ dependencies {
     compile "com.facebook.stetho:stetho:$rootProject.ext.stethoVersion"
     compile "com.facebook.stetho:stetho-okhttp3:$rootProject.ext.stethoVersion"
 
+    compile "com.afollestad.material-dialogs:core:$materialDialogsVersion"
+
     // Debug Drawer
     debugCompile "io.palaima.debugdrawer:debugdrawer:$rootProject.ext.debugDrawerVersion"
     debugCompile "io.palaima.debugdrawer:debugdrawer-commons:$rootProject.ext.debugDrawerVersion"
