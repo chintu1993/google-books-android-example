@@ -5,4 +5,13 @@
     <dimen name="nav_header_vertical_spacing">16dp</dimen>
     <dimen name="nav_header_height">160dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+
+    <dimen name="book_card_margin">5dp</dimen>
+    <dimen name="book_card_radius">0dp</dimen>
+    <dimen name="book_card_cover_height">160dp</dimen>
+    <dimen name="book_title_padding">10dp</dimen>
+    <dimen name="book_card_title_text_size">15sp</dimen>
+    <dimen name="book_author_padding_bottom">5dp</dimen>
+    <dimen name="book_author_text_size">12sp</dimen>
+    <dimen name="detail_backdrop_height">250dp</dimen>
 </resources>
