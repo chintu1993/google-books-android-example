@@ -16,19 +16,28 @@ class BookListController @Inject constructor() : BaseController(), BookListProce
     var bookList: MutableList<Book> = Lists.newArrayList()
     var query: String? = null
     var downloadableItemsCount: Int = 0
+    private var listener: BookListListener? = null
+
+    fun setBookListListener(listener: BookListListener) {
+        this.listener = listener
+    }
 
     fun requestBooks(query: String) {
         Timber.d("books requested")
+        listener?.onBooksRequested()
+        listener?.onClearBooks()
         bookList = Lists.newArrayList()
         this.query = query
         listProcessor.request(FilterPagingRequest(query, 0), this)
     }
 
     fun requestMoreBooks() {
+        listener?.onBooksRequested()
         query?.let { listProcessor.request(FilterPagingRequest(it, bookList.size), this) }
     }
 
     override fun onBooksRetrieved(listResponse: BookListResponse) {
+        listener?.onBooksRetrieved(listResponse.bookList)
         bookList.addAll(listResponse.bookList)
         downloadableItemsCount = listResponse.itemsCount
 
