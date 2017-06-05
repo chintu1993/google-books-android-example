@@ -11,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.SearchView.OnQueryTextListener;
 import android.view.View;
+import android.widget.ProgressBar;
 
 import com.books.sample.R;
 import com.books.sample.booklist.domain.Book;
@@ -34,6 +35,7 @@ public class BookListFragment extends BaseFragment implements OnBookClickListene
 
     @BindView(R.id.book_list_recycler_view) RecyclerView recyclerView;
     @BindView(R.id.search) SearchView searchView;
+    @BindView(R.id.progress_bar) ProgressBar progressBar;
 
     private BookListAdapter bookListAdapter;
 
@@ -86,12 +88,13 @@ public class BookListFragment extends BaseFragment implements OnBookClickListene
 
     @Override
     public void onBooksRequested() {
-
+        progressBar.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void onBooksRetrieved(@NotNull List<Book> bookList) {
         bookListAdapter.addItems(bookList);
+        progressBar.setVisibility(View.GONE);
     }
 
     @Override
