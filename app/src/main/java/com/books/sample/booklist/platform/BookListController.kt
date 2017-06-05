@@ -46,8 +46,6 @@ class BookListController @Inject constructor() : BaseController(), BookListProce
         bookList.addAll(listResponse.bookList)
         downloadableItemsCount = listResponse.itemsCount
 
-        //forward info items loaded
-
         if (bookList.size >= listResponse.itemsCount) {
             //forward info to more items
         }
