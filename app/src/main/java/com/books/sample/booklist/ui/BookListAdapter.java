@@ -20,7 +20,6 @@ import com.google.common.collect.Lists;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import timber.log.Timber;
 
 import java.util.List;
 
@@ -55,7 +54,6 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.BookVi
 
     @Override
     public void onBindViewHolder(BookViewHolder holder, int position) {
-        Timber.d("onBindViewHolder %s", position);
         final Book book = bookList.get(position);
         holder.title.setText(book.getTitle());
         holder.author.setText(Joiner.on(", ").join(Iterators.transform(book.getAuthors().iterator(), new Function<Author, String>() {
