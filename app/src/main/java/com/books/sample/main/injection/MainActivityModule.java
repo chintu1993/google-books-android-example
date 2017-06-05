@@ -1,7 +1,7 @@
 package com.books.sample.main.injection;
 
 import android.app.Activity;
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 
 import com.books.sample.MainActivity;
 import com.books.sample.booklist.injection.BookListFragmentSubcomponent;
@@ -11,7 +11,7 @@ import dagger.Binds;
 import dagger.Module;
 import dagger.android.ActivityKey;
 import dagger.android.AndroidInjector;
-import dagger.android.FragmentKey;
+import dagger.android.support.FragmentKey;
 import dagger.multibindings.IntoMap;
 
 @Module(subcomponents = {IMainActivitySubcomponent.class, BookListFragmentSubcomponent.class})

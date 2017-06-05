@@ -1,10 +1,10 @@
 package com.books.sample;
 
-import android.app.Fragment;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -18,12 +18,12 @@ import com.books.sample.shared.android.platform.AndroidController;
 
 import dagger.android.AndroidInjection;
 import dagger.android.DispatchingAndroidInjector;
-import dagger.android.HasDispatchingFragmentInjector;
+import dagger.android.support.HasDispatchingSupportFragmentInjector;
 
 import javax.inject.Inject;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener,
-        HasDispatchingFragmentInjector {
+        HasDispatchingSupportFragmentInjector {
 
     @Inject DispatchingAndroidInjector<Fragment> fragmentInjector;
     @Inject AndroidController androidController;
@@ -116,7 +116,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     @Override
-    public DispatchingAndroidInjector<Fragment> fragmentInjector() {
+    public DispatchingAndroidInjector<Fragment> supportFragmentInjector() {
         return fragmentInjector;
     }
 }
