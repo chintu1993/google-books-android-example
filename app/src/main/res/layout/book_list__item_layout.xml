@@ -43,6 +43,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/title_text_view"
+                android:ellipsize="end"
+                android:maxLines="2"
                 android:paddingBottom="@dimen/book_author_padding_bottom"
                 android:paddingLeft="@dimen/book_title_padding"
                 android:paddingRight="@dimen/book_title_padding"

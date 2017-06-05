@@ -11,8 +11,11 @@ import android.widget.TextView;
 
 import com.books.sample.R;
 import com.books.sample.booklist.domain.Book;
+import com.books.sample.shared.domain.Author;
 import com.bumptech.glide.Glide;
+import com.google.common.base.Function;
 import com.google.common.base.Joiner;
+import com.google.common.collect.Iterators;
 import com.google.common.collect.Lists;
 
 import butterknife.BindView;
@@ -55,7 +58,12 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.BookVi
         Timber.d("onBindViewHolder %s", position);
         final Book book = bookList.get(position);
         holder.title.setText(book.getTitle());
-        holder.author.setText(Joiner.on(", ").join(book.getAuthors()));
+        holder.author.setText(Joiner.on(", ").join(Iterators.transform(book.getAuthors().iterator(), new Function<Author, String>() {
+            @Override
+            public String apply(Author input) {
+                return input.getValue();
+            }
+        })));
         Glide.with(context).load(book.getThumbnail().getValue()).into(holder.thubmnail);
         holder.itemView.setOnClickListener(new OnClickListener() {
             @Override
