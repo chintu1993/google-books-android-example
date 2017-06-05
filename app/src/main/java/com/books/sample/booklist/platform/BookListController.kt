@@ -23,12 +23,17 @@ class BookListController @Inject constructor() : BaseController(), BookListProce
     }
 
     fun requestBooks(query: String) {
-        Timber.d("books requested")
-        listener?.onBooksRequested()
         listener?.onClearBooks()
-        bookList = Lists.newArrayList()
-        this.query = query
-        listProcessor.request(FilterPagingRequest(query, 0), this)
+        if ((this.query ?: "") == query) {
+            Timber.d("no new query needed - %s", query)
+            listener?.onBooksRetrieved(bookList)
+        } else {
+            Timber.d("Books query requested - %s", query)
+            listener?.onBooksRequested()
+            bookList = Lists.newArrayList()
+            this.query = query
+            listProcessor.request(FilterPagingRequest(query, 0), this)
+        }
     }
 
     fun requestMoreBooks() {
