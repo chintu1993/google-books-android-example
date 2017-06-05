@@ -9,9 +9,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import butterknife.ButterKnife;
+import butterknife.Unbinder;
 import dagger.android.AndroidInjection;
 
 public abstract class BaseFragment extends Fragment {
+
+    private Unbinder unbinder;
 
     protected abstract int getLayoutResourceId();
 
@@ -33,7 +36,7 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        ButterKnife.bind(getThis(), view);
+        unbinder = ButterKnife.bind(getThis(), view);
         ofAfterViewCreated(view, savedInstanceState);
     }
 
@@ -45,4 +48,14 @@ public abstract class BaseFragment extends Fragment {
 
     }
 
+    @Override
+    public final void onDestroyView() {
+        super.onDestroyView();
+        unbinder.unbind();
+        onAfterDestroyView();
+    }
+
+    protected void onAfterDestroyView() {
+
+    }
 }
