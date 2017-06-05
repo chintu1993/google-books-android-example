@@ -70,7 +70,7 @@ public class BookListFragment extends BaseFragment implements OnBookClickListene
                 return false;
             }
         });
-        searchView.setQuery("flower", true);
+        searchView.setQuery(bookListController.getQuery(), true);
 
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getContext(), 2);
         recyclerView.setLayoutManager(layoutManager);

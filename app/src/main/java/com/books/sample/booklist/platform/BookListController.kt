@@ -11,10 +11,12 @@ import javax.inject.Singleton
 
 @Singleton
 class BookListController @Inject constructor() : BaseController(), BookListProcessorListener {
+    private val defaultQuery = "Flower"
+
     @Inject lateinit var listProcessor: BookListProcessor
 
     var bookList: MutableList<Book> = Lists.newArrayList()
-    var query: String? = null
+    var query: String = defaultQuery
     var downloadableItemsCount: Int = 0
     private var listener: BookListListener? = null
 
@@ -24,7 +26,7 @@ class BookListController @Inject constructor() : BaseController(), BookListProce
 
     fun requestBooks(query: String) {
         listener?.onClearBooks()
-        if ((this.query ?: "") == query) {
+        if (this.query == query && !bookList.isEmpty()) {
             Timber.d("no new query needed - %s", query)
             listener?.onBooksRetrieved(bookList)
         } else {
@@ -38,7 +40,7 @@ class BookListController @Inject constructor() : BaseController(), BookListProce
 
     fun requestMoreBooks() {
         listener?.onBooksRequested()
-        query?.let { listProcessor.request(FilterPagingRequest(it, bookList.size), this) }
+        listProcessor.request(FilterPagingRequest(query, bookList.size), this)
     }
 
     override fun onBooksRetrieved(listResponse: BookListResponse) {
