@@ -55,7 +55,6 @@ public class BookListFragment extends BaseFragment implements OnBookClickListene
         searchView.setQueryHint("Find books");
         searchView.onActionViewExpanded();
         searchView.setIconified(false);
-        searchView.clearFocus();
         searchView.setOnQueryTextListener(new OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
