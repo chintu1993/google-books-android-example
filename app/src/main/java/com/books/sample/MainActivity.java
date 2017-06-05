@@ -1,5 +1,6 @@
 package com.books.sample;
 
+import android.app.Fragment;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -16,11 +17,15 @@ import android.view.View;
 import com.books.sample.shared.android.platform.AndroidController;
 
 import dagger.android.AndroidInjection;
+import dagger.android.DispatchingAndroidInjector;
+import dagger.android.HasDispatchingFragmentInjector;
 
 import javax.inject.Inject;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener,
+        HasDispatchingFragmentInjector {
 
+    @Inject DispatchingAndroidInjector<Fragment> fragmentInjector;
     @Inject AndroidController androidController;
 
     @Override
@@ -108,5 +113,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public DispatchingAndroidInjector<Fragment> fragmentInjector() {
+        return fragmentInjector;
     }
 }
