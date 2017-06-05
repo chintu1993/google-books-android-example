@@ -37,14 +37,14 @@ public abstract class BaseFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         unbinder = ButterKnife.bind(getThis(), view);
-        ofAfterViewCreated(view, savedInstanceState);
+        onAfterViewCreated(view, savedInstanceState);
     }
 
     protected void onAfterAttach(Context context) {
 
     }
 
-    protected void ofAfterViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    protected void onAfterViewCreated(View view, @Nullable Bundle savedInstanceState) {
 
     }
 

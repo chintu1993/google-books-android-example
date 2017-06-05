@@ -48,7 +48,7 @@ public class BookListFragment extends BaseFragment implements OnBookClickListene
     }
 
     @Override
-    protected void ofAfterViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    protected void onAfterViewCreated(View view, @Nullable Bundle savedInstanceState) {
         bookListAdapter = new BookListAdapter(getContext(), this);
         bookListController.setBookListListener(this);
 
