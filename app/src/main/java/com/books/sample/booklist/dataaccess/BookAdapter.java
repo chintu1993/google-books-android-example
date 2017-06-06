@@ -14,6 +14,7 @@ class BookAdapter extends SafeExternalDataAdapter<Book, BookItemDto> {
     private final RatingAdapter ratingAdapter = new RatingAdapter();
     private final PublishInfoAdapter publishInfoAdapter = new PublishInfoAdapter();
     private final OptionalExternalDataAdapter<Amount, PriceDto> retailPriceAdapter = new OptionalExternalDataAdapter<>(new RetailPriceAdapter());
+    private final OptionalExternalDataAdapter<Uri, String> uriAdapter = new OptionalExternalDataAdapter<>(new UriAdapter());
     private final SafeExternalDataListAdapter<Author, String> authorAdapter = new SafeExternalDataListAdapter<>(new AuthorAdapter());
 
     @Override
@@ -30,7 +31,7 @@ class BookAdapter extends SafeExternalDataAdapter<Book, BookItemDto> {
                 authorAdapter.toDomainData(volumeInfoDto.getAuthorsList()),
                 publishInfoAdapter.toDomainData(volumeInfoDto),
                 getSalesUri(data),
-                new Uri(android.net.Uri.parse(volumeInfoDto.getImageLinksDto().getThumbnailUri())),
+                uriAdapter.toDomainData(volumeInfoDto.getImageLinksDto().getThumbnailUri()),
                 retailPriceAdapter.toDomainData(data.getSaleInfoDto().getRetailPriceDto()));
     }
 

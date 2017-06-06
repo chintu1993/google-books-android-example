@@ -17,7 +17,7 @@ import com.books.sample.R;
 import com.books.sample.booklist.domain.Book;
 import com.books.sample.booklist.platform.BookListController;
 import com.books.sample.booklist.platform.BookListListener;
-import com.books.sample.booklist.ui.BookListAdapter.OnBookClickListener;
+import com.books.sample.booklist.ui.BookListAdapter.BookAdapterListener;
 import com.books.sample.shared.ui.BaseFragment;
 import com.books.sample.shared.ui.GridSpacingItemDecoration;
 
@@ -29,7 +29,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-public class BookListFragment extends BaseFragment implements OnBookClickListener, BookListListener {
+public class BookListFragment extends BaseFragment implements BookAdapterListener, BookListListener {
 
     @Inject BookListController bookListController;
 
@@ -85,6 +85,10 @@ public class BookListFragment extends BaseFragment implements OnBookClickListene
 
     }
 
+    @Override
+    public void onMoreItemsRequested() {
+        bookListController.requestMoreBooks();
+    }
 
     @Override
     public void onBooksRequested() {

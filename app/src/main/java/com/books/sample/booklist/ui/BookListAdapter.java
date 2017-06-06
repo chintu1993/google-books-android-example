@@ -26,12 +26,14 @@ import java.util.List;
 public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.BookViewHolder> {
 
     private final Context context;
-    private final OnBookClickListener onBookClickListener;
+    private final BookAdapterListener bookAdapterListener;
     private List<Book> bookList = Lists.newArrayList();
 
-    public BookListAdapter(Context context, OnBookClickListener onBookClickListener) {
+    private boolean isLoadingItems = false;
+
+    public BookListAdapter(Context context, BookAdapterListener bookAdapterListener) {
         this.context = context;
-        this.onBookClickListener = onBookClickListener;
+        this.bookAdapterListener = bookAdapterListener;
     }
 
     @Override
@@ -44,6 +46,7 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.BookVi
         int previousItemPosition = bookList.size() > 0 ? bookList.size() - 1 : 0;
         bookList.addAll(addedBookList);
         notifyItemRangeInserted(previousItemPosition, addedBookList.size());
+        isLoadingItems = false;
     }
 
     public void clearItems() {
@@ -54,6 +57,12 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.BookVi
 
     @Override
     public void onBindViewHolder(BookViewHolder holder, int position) {
+
+        if(position >= getItemCount() - 3 && !isLoadingItems) {
+            bookAdapterListener.onMoreItemsRequested();
+            isLoadingItems = true;
+        }
+
         final Book book = bookList.get(position);
         holder.title.setText(book.getTitle());
         holder.author.setText(Joiner.on(", ").join(Iterators.transform(book.getAuthors().iterator(), new Function<Author, String>() {
@@ -62,11 +71,16 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.BookVi
                 return input.getValue();
             }
         })));
-        Glide.with(context).load(book.getThumbnail().getValue()).into(holder.thubmnail);
+        if(book.getThumbnail().isPresent()){
+            Glide.with(context).load(book.getThumbnail().get().getValue()).into(holder.thubmnail);
+        }
+        else {
+            holder.thubmnail.setBackgroundColor(context.getResources().getColor(R.color.colorAccent));
+        }
         holder.itemView.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                onBookClickListener.onBookClicked(book);
+                bookAdapterListener.onBookClicked(book);
             }
         });
     }
@@ -76,8 +90,10 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.BookVi
         return bookList.size();
     }
 
-    public interface OnBookClickListener {
+    public interface BookAdapterListener {
         void onBookClicked(Book book);
+
+        void onMoreItemsRequested();
     }
 
     public class BookViewHolder extends RecyclerView.ViewHolder {
