@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.books.sample.shared.android.platform.AndroidController;
+import com.books.sample.shared.screenflow.platform.ScreenFlowController;
 
 import dagger.android.AndroidInjection;
 import dagger.android.DispatchingAndroidInjector;
@@ -27,11 +28,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Inject DispatchingAndroidInjector<Fragment> fragmentInjector;
     @Inject AndroidController androidController;
+    @Inject ScreenFlowController screenFlowController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         AndroidInjection.inject(this);
         super.onCreate(savedInstanceState);
+        screenFlowController.initialize(R.id.container_layout, getSupportFragmentManager());
         androidController.setContext(this);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
