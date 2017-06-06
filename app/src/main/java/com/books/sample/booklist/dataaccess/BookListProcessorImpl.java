@@ -24,7 +24,7 @@ public class BookListProcessorImpl extends BaseRestProcessorImpl<BookListService
     @Nonnull
     @Override
     protected Call<BookListResponseDto> createCall(@Nonnull FilterPagingRequest domainArgument) {
-        return service.fetchBookList(QUERY_PREFIX + domainArgument.getTitleFilter(), Environment.API_KEY);
+        return service.fetchBookList(QUERY_PREFIX + domainArgument.getTitleFilter(), Environment.API_KEY, domainArgument.getStartIndex());
     }
 
     @Override
