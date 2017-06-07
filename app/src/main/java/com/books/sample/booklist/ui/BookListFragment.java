@@ -24,6 +24,7 @@ import com.books.sample.shared.ui.GridSpacingItemDecoration;
 import org.jetbrains.annotations.NotNull;
 
 import butterknife.BindView;
+import timber.log.Timber;
 
 import java.util.List;
 
@@ -82,7 +83,8 @@ public class BookListFragment extends BaseFragment implements BookAdapterListene
 
     @Override
     public void onBookClicked(Book book) {
-
+        Timber.d("on book clicked");
+        bookListController.showBookDetail(book);
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.books.sample.booklist.platform
 
+import com.books.sample.bookdetail.platform.BookDetailController
 import com.books.sample.booklist.domain.Book
 import com.books.sample.booklist.domain.BookListResponse
 import com.books.sample.booklist.domain.FilterPagingRequest
@@ -14,6 +15,7 @@ class BookListController @Inject constructor() : BaseController(), BookListProce
     private val defaultQuery = "Kitty"
 
     @Inject lateinit var listProcessor: BookListProcessor
+    @Inject lateinit var detailController: BookDetailController
 
     var bookList: MutableList<Book> = Lists.newArrayList()
     var query: String = defaultQuery
@@ -53,6 +55,10 @@ class BookListController @Inject constructor() : BaseController(), BookListProce
         }
 
         Timber.d("books retrieved")
+    }
+
+    fun showBookDetail(book: Book) {
+        detailController.showBookDetail(book)
     }
 
 }
