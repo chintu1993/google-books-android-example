@@ -1,6 +1,5 @@
 package com.books.sample.bookdetail.platform
 
-import com.books.sample.bookdetail.ui.BookDetailFragment
 import com.books.sample.booklist.domain.Book
 import com.books.sample.shared.android.platform.AndroidController
 import com.books.sample.shared.screenflow.platform.ScreenFlowController
@@ -14,10 +13,11 @@ class BookDetailController @Inject constructor() {
 
     @Inject lateinit var screenFlowController: ScreenFlowController
     @Inject lateinit var androidController: AndroidController
+    @Inject lateinit var screenProvider: BookDetailFragmentProvider
 
     fun showBookDetail(book: Book) {
         this.book = book
-        screenFlowController.showFragment(BookDetailFragment())
+        screenFlowController.showFragment(screenProvider)
     }
 
     fun getBook() = book
