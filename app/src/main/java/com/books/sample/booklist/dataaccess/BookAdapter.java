@@ -27,7 +27,7 @@ class BookAdapter extends SafeExternalDataAdapter<Book, BookItemDto> {
                 volumeInfoDto.getDescription(),
                 volumeInfoDto.getPageCount(),
                 volumeInfoDto.getLanguage(),
-                ratingAdapter.toDomainDataIgnoringUncheckedExceptions(volumeInfoDto),
+                ratingAdapter.toDomainData(volumeInfoDto),
                 authorAdapter.toDomainData(volumeInfoDto.getAuthorsList()),
                 publishInfoAdapter.toDomainData(volumeInfoDto),
                 getSalesUri(data),

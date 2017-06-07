@@ -16,8 +16,8 @@ class BookVolumeInfoDto {
     @SerializedName("authors") private List<String> authorsList;
     @SerializedName("publishedDate") private String publishedDate;
     @SerializedName("pageCount") private int pageCount;
-    @SerializedName("averageRating") private double averageRating;
-    @SerializedName("ratingsCount") private int ratingsCount;
+    @SerializedName("averageRating") private Double averageRating;
+    @SerializedName("ratingsCount") private Integer ratingsCount;
     @SerializedName("imageLinks") private ImageLinksDto imageLinksDto;
 
 
