@@ -7,8 +7,6 @@ import com.books.sample.shared.dependency.injection.Injector;
 import com.books.sample.shared.utils.infrastructure.TagPrefixDebugTree;
 import com.facebook.stetho.Stetho;
 
-import net.danlew.android.joda.JodaTimeAndroid;
-
 import dagger.android.DispatchingAndroidInjector;
 import dagger.android.HasDispatchingActivityInjector;
 import timber.log.Timber;
@@ -24,7 +22,6 @@ public class BooksApplication extends Application implements HasDispatchingActiv
     public void onCreate() {
         super.onCreate();
 
-        JodaTimeAndroid.init(this);
         Timber.plant(new TagPrefixDebugTree(LOG_TAG_PREFIX));
         Stetho.initializeWithDefaults(this);
         Injector.INSTANCE.initialize();

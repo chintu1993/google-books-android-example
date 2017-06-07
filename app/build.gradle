@@ -52,9 +52,6 @@ dependencies {
     compile "com.android.support.constraint:constraint-layout:$constraintLayoutVersion"
     compile "com.jakewharton.timber:timber:$rootProject.ext.timberVersion"
 
-    //Joda time
-    compile "net.danlew:android.joda:$rootProject.ext.jodatimeVersion"
-
     // Stetho
     compile "com.facebook.stetho:stetho:$rootProject.ext.stethoVersion"
     compile "com.facebook.stetho:stetho-okhttp3:$rootProject.ext.stethoVersion"
