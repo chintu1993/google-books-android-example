@@ -26,4 +26,8 @@ class BookDetailController @Inject constructor() {
         book.buyUri.orNull()?.let { androidController.openWebIntent(it) }
     }
 
+    fun shareBook() {
+        androidController.openShareIntent(book.previewLink)
+    }
+
 }

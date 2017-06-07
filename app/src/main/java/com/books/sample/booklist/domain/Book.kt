@@ -9,6 +9,7 @@ data class Book(
         val id: String,
         val eTag: String,
         val title: String,
+        val previewLink: String,
         val subtitle: Optional<String>,
         val description: Optional<String>,
         val pageCount: Int,

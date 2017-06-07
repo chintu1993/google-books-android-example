@@ -19,6 +19,7 @@ class BookVolumeInfoDto {
     @SerializedName("averageRating") private Double averageRating;
     @SerializedName("ratingsCount") private Integer ratingsCount;
     @SerializedName("imageLinks") private ImageLinksDto imageLinksDto;
+    @SerializedName("previewLink") private String previewLink;
 
 
     String getTitle() {
@@ -63,5 +64,9 @@ class BookVolumeInfoDto {
 
     ImageLinksDto getImageLinksDto() {
         return imageLinksDto;
+    }
+
+    String getPreviewLink() {
+        return previewLink;
     }
 }

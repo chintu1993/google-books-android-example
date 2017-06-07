@@ -23,6 +23,7 @@ class BookAdapter extends SafeExternalDataAdapter<Book, BookItemDto> {
         return new Book(data.getId(),
                 data.geteTag(),
                 volumeInfoDto.getTitle(),
+                volumeInfoDto.getPreviewLink(),
                 volumeInfoDto.getSubtitle(),
                 volumeInfoDto.getDescription(),
                 volumeInfoDto.getPageCount(),

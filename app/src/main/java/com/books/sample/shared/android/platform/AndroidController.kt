@@ -18,4 +18,12 @@ class AndroidController @Inject constructor() {
         val browserIntent = Intent(Intent.ACTION_VIEW, uri.value)
         context.startActivity(browserIntent)
     }
+
+    fun openShareIntent(shareContent: String) {
+        val intent = Intent()
+        intent.action = Intent.ACTION_SEND
+        intent.putExtra(Intent.EXTRA_TEXT, shareContent)
+        intent.type = "text/plain"
+        context.startActivity(intent)
+    }
 }

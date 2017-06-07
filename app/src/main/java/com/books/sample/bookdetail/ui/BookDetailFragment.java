@@ -28,7 +28,6 @@ import com.google.common.base.Optional;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-import timber.log.Timber;
 
 import javax.inject.Inject;
 
@@ -125,7 +124,7 @@ public class BookDetailFragment extends BaseFragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.share:
-                Timber.d("Share");
+                bookDetailController.shareBook();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
