@@ -12,7 +12,7 @@ import javax.inject.Singleton
 
 @Singleton
 class BookListController @Inject constructor() : BaseController(), BookListProcessorListener {
-    private val defaultQuery = "Kitty"
+    private val defaultQuery = "Puppy"
 
     @Inject lateinit var listProcessor: BookListProcessor
     @Inject lateinit var detailController: BookDetailController
