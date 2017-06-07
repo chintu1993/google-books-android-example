@@ -7,6 +7,9 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RatingBar;
@@ -25,6 +28,7 @@ import com.google.common.base.Optional;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import timber.log.Timber;
 
 import javax.inject.Inject;
 
@@ -52,6 +56,13 @@ public class BookDetailFragment extends BaseFragment {
         return R.layout.book_detail_layout;
     }
 
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
+
     @Override
     protected Fragment getThis() {
         return this;
@@ -60,6 +71,13 @@ public class BookDetailFragment extends BaseFragment {
     @OnClick(R.id.fab)
     public void onFabClick() {
         bookDetailController.redirectToBookPurchase();
+    }
+
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.book_detail, menu);
+        super.onCreateOptionsMenu(menu, inflater);
     }
 
     @Override
@@ -101,5 +119,16 @@ public class BookDetailFragment extends BaseFragment {
     private void initializeKeyValue(TextView keyView, TextView valueView, Optional<String> value) {
         UiUtils.setVisible(value.isPresent(), keyView, valueView);
         valueView.setText(value.orNull());
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.share:
+                Timber.d("Share");
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }
