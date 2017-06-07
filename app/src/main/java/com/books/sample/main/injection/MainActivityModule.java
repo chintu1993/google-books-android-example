@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.support.v4.app.Fragment;
 
 import com.books.sample.MainActivity;
+import com.books.sample.bookdetail.injection.BookDetailFragmentSubcomponent;
+import com.books.sample.bookdetail.ui.BookDetailFragment;
 import com.books.sample.booklist.injection.BookListFragmentSubcomponent;
 import com.books.sample.booklist.ui.BookListFragment;
 
@@ -14,7 +16,7 @@ import dagger.android.AndroidInjector;
 import dagger.android.support.FragmentKey;
 import dagger.multibindings.IntoMap;
 
-@Module(subcomponents = {IMainActivitySubcomponent.class, BookListFragmentSubcomponent.class})
+@Module(subcomponents = {IMainActivitySubcomponent.class, BookListFragmentSubcomponent.class, BookDetailFragmentSubcomponent.class})
 public abstract class MainActivityModule {
     @Binds
     @IntoMap
@@ -25,4 +27,9 @@ public abstract class MainActivityModule {
     @IntoMap
     @FragmentKey(BookListFragment.class)
     abstract AndroidInjector.Factory<? extends Fragment> bindBookListFragmentInjectorFactory(BookListFragmentSubcomponent.Builder builder);
+
+    @Binds
+    @IntoMap
+    @FragmentKey(BookDetailFragment.class)
+    abstract AndroidInjector.Factory<? extends Fragment> bindBookDetailFragmentInjectorFactory(BookDetailFragmentSubcomponent.Builder builder);
 }
