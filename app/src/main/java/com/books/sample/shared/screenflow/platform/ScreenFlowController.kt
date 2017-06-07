@@ -22,6 +22,12 @@ class ScreenFlowController @Inject constructor() {
         transaction.replace(containerId, fragment)
         transaction.addToBackStack(null)
         transaction.commit()
+//        fragmentManager.executePendingTransactions()
+
+    }
+
+    fun showInitialFragment(fragment: Fragment) {
+        fragmentManager.beginTransaction().add(containerId, fragment).commit()
     }
 
 }
