@@ -20,6 +20,10 @@ android {
         }
     }
 
+    testOptions {
+        unitTests.returnDefaultValues = true // this prevents "not mocked" error
+    }
+
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
     }
