@@ -9,4 +9,9 @@
 
     <string name="global__ui__error">Error</string>
     <string name="global__ui__no_connection">You are offline. Please try again later</string>
+
+    <string name="book_detail__ui__published">Published</string>
+    <string name="book_detail__ui__publisher">Publisher</string>
+    <string name="book_detail__ui__pages">Pages</string>
+    <string name="book_detail__ui__price">Price</string>
 </resources>
